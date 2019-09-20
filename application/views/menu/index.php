@@ -81,7 +81,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
@@ -93,10 +93,34 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Manajemen Kode Barang</label>
-                        <input type="text" class="form-control mb-2" id="kode" name="kode" placeholder="Masukkan Kode">
-                        <input type="text" class="form-control mb-2" id="brg" name="brg" placeholder="Masukkan Nama Barang">
-                        <input type="text" class="form-control mb-2" id="satuan" name="satuan" placeholder="Masukkan Satuan">
-                        <input type="text" class="form-control mb-2" id="harga" name="harga" placeholder="Masukkan Harga(angka)">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Masukkan Kode</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control mb-2" id="kode" name="kode" placeholder="Masukkan Kode">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Masukkan Nama</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control mb-2" id="brg" name="brg" placeholder="Masukkan Nama Barang">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Masukkan Satuan</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control mb-2" id="satuan" name="satuan" placeholder="Masukkan Satuan">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Masukkan Harga</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control mb-2" id="harga" name="harga" placeholder="Masukkan Harga(angka)">
+                            </div>
+                        </div>
+
+
+
+
                     </div>
                 </div>
                 <div class="modal-footer">

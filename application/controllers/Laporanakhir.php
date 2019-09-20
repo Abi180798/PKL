@@ -283,11 +283,11 @@ class Laporanakhir extends CI_Controller
         $kode = $_GET['kode'];
         $output = '';
         $query = '';
-        $this->load->model('Penerimaan_model', 'pen');
-
+        // $this->load->model('Penerimaan_model', 'pen');
+        $this->load->model('Laporan_model', 'lap');
         $query = $kode;
 
-        $data = $this->pen->fetch_data($query);
+        $data = $this->lap->fetch_data($query);
         $jml = 0;
         foreach ($data->result() as $row) {
             $jml = $jml + $row->total;
@@ -297,50 +297,40 @@ class Laporanakhir extends CI_Controller
          <table class="table table-bordered table-striped">
          <tr class="table-primary text-nowrap">
          <th rowspan="2">No</th>
-         <th rowspan="2">Tanggal</th>
-         <th rowspan="2">Dari (Nama Rekanan)</th>
-         <th colspan="2">Dokumen Pengadaan</th>
-         <th rowspan="2">Kode Barang</th>
-         <th rowspan="2">Nama Barang</th>
-         <th rowspan="2">Satuan</th>
-         <th rowspan="2">Volume</th>
-         <th rowspan="2">Harga Satuan</th>
-         <th rowspan="2">Jumlah Harga</th>
-         <th colspan="2">Bukti Penerimaan</th>
-         <th rowspan="2">Keterangan</th>
-         <th rowspan="2">Action</th>
-     </tr>
-     <tr class="table-primary">
-         <th scope="col">No</th>
-         <th scope="col">Tanggal</th>
-         <th scope="col">No</th>
-         <th scope="col">Tanggal</th>
-     </tr>
+                    <th rowspan="2">Kode Barang</th>
+                    <th rowspan="2">Nama Barang</th>
+                    <th rowspan="2">Satuan</th>
+                    <th colspan="3">Jumlah Barang</th>
+                    <th colspan="3">Jumlah Harga</th>
+                    <th rowspan="2">Keterangan</th>
+                    </tr>
+                <tr class="table-primary">
+                    <th scope="col">Masuk</th>
+                    <th scope="col">Keluar</th>
+                    <th scope="col">Sisa</th>
+                    <th scope="col">Bertambah</th>
+                    <th scope="col">Berkurang</th>
+                    <th scope="col">Saldo</th>
+                </tr>
       ';
         $i = 1;
         if ($data->num_rows() > 0) {
+            $sisa = '';
+            $saldo = '';
             foreach ($data->result() as $row) {
-
                 $output .= '
           <tr>
           <td>' . $i . '</td>
-          <td>' . $row->tgl_pene . '</td>
-          <td>' . $row->dari . '</td>
-          <td>' . $row->no_doc_peng . '</td>
-          <td>' . $row->tgl_doc_peng . '</td>
           <td>' . $row->kode_brg . '</td>
           <td>' . $row->nama_brg . '</td>
           <td>' . $row->satuan . '</td>
           <td>' . $row->volume . '</td>
+          <td>' . $row->volumes . '</td>
+          <td>' . $sisa = $row->volume - $row->volumes . '</td>
           <td>' . $row->harga . '</td>
-          <td>' . $row->total . '</td>
-          <td>' . $row->no_buk_pen . '</td>
-          <td>' . $row->tgl_buk_pen . '</td>
+          <td>' . $row->hargas . '</td>
+          <td>' . $saldo = $row->harga - $row->hargas . '</td>
           <td>' . $row->ket . '</td>
-          <td><a href="" class="badge badge-warning">Kirim</a>
-          <a href="' . base_url('penerimaan/edit/') . '' . $row->id . '" class="badge badge-success">Edit</a>
-          <a href="' . base_url('penerimaan/hapus/') . '' . $row->id . '" class="badge badge-danger tombol-hapus">Hapus</a>
-          </td>
 
           </tr>
           
@@ -348,7 +338,7 @@ class Laporanakhir extends CI_Controller
                 $i++;
             }
             $output .= '<tr>
-        <th colspan="10">Total</th>
+        <th colspan="8">Total</th>
         <th colspan="5">Rp.' . $jml . '</th>
         </tr>';
         } else {

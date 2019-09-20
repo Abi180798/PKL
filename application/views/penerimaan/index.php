@@ -16,10 +16,18 @@
     <div class="row mb-3">
         <div class="col-sm-8">
             <?= form_error('tgl_pene', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
-
             <?= form_error('dari', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
-
             <?= form_error('kode_brg', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('sumber', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('nama_brg', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('satuan', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('no_doc_peng', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('tgl_doc_peng', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('vol', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('harga', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('no_buk_pen', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('tgl_buk_pen', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('status', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
 
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
             <div class="flash-datae" data-flashdata="<?= $this->session->flashdata('messages'); ?>"></div>
@@ -76,31 +84,31 @@
             <tbody>
                 <?php $i = 1; ?>
                 <?php foreach ($menu as $m) : ?>
-                <tr>
-                    <th scope="row"><?= $i; ?></th>
-                    <td><?= $m['tgl_pene']; ?></td>
-                    <td><?= $m['dari']; ?></td>
-                    <td><?= $m['sumber']; ?></td>
-                    <td><?= $m['no_doc_peng']; ?></td>
-                    <td><?= $m['tgl_doc_peng']; ?></td>
-                    <td><?= $m['kode_brg']; ?></td>
-                    <td><?= $m['nama_brg']; ?></td>
-                    <td><?= $m['satuan']; ?></td>
-                    <td><?= $m['volume']; ?></td>
-                    <td>Rp.<?= $m['harga']; ?></td>
-                    <td>Rp.<?= $m['total']; ?></td>
-                    <td><?= $m['no_buk_pen']; ?></td>
-                    <td><?= $m['tgl_buk_pen']; ?></td>
-                    <td><?= $m['status']; ?></td>
-                    <td><?= $m['ket']; ?></td>
-                    <td>
-                        <a href="<?= base_url('penerimaan/kirim/') ?><?= $m['id'] ?>" class="badge badge-warning tombol-kirim">Kirim</a>
-                        <a href="<?= base_url('penerimaan/edit/') ?><?= $m['id'] ?>" class="badge badge-success">Edit</a>
-                        <a href="<?= base_url('penerimaan/hapus/') ?><?= $m['id'] ?>" class="badge badge-danger tombol-hapus">Hapus</a>
-                    </td>
+                    <tr>
+                        <th scope="row"><?= $i; ?></th>
+                        <td><?= $m['tgl_pene']; ?></td>
+                        <td><?= $m['dari']; ?></td>
+                        <td><?= $m['sumber']; ?></td>
+                        <td><?= $m['no_doc_peng']; ?></td>
+                        <td><?= $m['tgl_doc_peng']; ?></td>
+                        <td><?= $m['kode_brg']; ?></td>
+                        <td><?= $m['nama_brg']; ?></td>
+                        <td><?= $m['satuan']; ?></td>
+                        <td><?= $m['volume']; ?></td>
+                        <td>Rp.<?= $m['harga']; ?></td>
+                        <td>Rp.<?= $m['total']; ?></td>
+                        <td><?= $m['no_buk_pen']; ?></td>
+                        <td><?= $m['tgl_buk_pen']; ?></td>
+                        <td><?= $m['status']; ?></td>
+                        <td><?= $m['ket']; ?></td>
+                        <td>
+                            <a href="<?= base_url('penerimaan/kirim/') ?><?= $m['id'] ?>" class="badge badge-warning tombol-kirim">Kirim</a>
+                            <a href="<?= base_url('penerimaan/edit/') ?><?= $m['id'] ?>" class="badge badge-success">Edit</a>
+                            <a href="<?= base_url('penerimaan/hapus/') ?><?= $m['id'] ?>" class="badge badge-danger tombol-hapus">Hapus</a>
+                        </td>
 
-                </tr>
-                <?php $i++; ?>
+                    </tr>
+                    <?php $i++; ?>
                 <?php endforeach; ?>
 
             </tbody>

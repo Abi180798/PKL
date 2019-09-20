@@ -110,7 +110,7 @@
                 <label class="col-sm-3 col-form-label">Status Barang</label>
                 <div class="col-sm-9">
                     <div class="input-group mb-3">
-                        <select class="custom-select" id="inputGroupSelect02" name="status">
+                        <select class="custom-select" id="inputGroupSelect02" name="stts">
                             <option value="<?= $brg['stts']; ?>" selected><?= $brg['stts']; ?></option>
                             <option value="Ada">Ada</option>
                             <option value="Tidak Ada">Tidak Ada</option>

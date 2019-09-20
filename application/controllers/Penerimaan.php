@@ -13,7 +13,7 @@ class Penerimaan extends CI_Controller
     {
         $data['title'] = 'Penerimaan Barang';
         $data['user'] = $this->db->get_where('tknpm_login', ['username' => $this->session->userdata('username')])->row_array();
-        var_dump(date('Y-m-d'));
+        // var_dump(date('Y-m-d'));
         $data['menu'] = $this->db->get('tknpm_penerimaan')->result_array();
 
         $data['jumlah'] = 0;
@@ -64,7 +64,10 @@ class Penerimaan extends CI_Controller
 
         $vol = $this->input->post('vol');
         $harga = $this->input->post('harga');
-        $total = $vol * $harga;
+        if ($vol != null && $harga != null) {
+
+            $total = $vol * $harga;
+        }
 
 
         if ($this->form_validation->run() == false) {
@@ -114,17 +117,44 @@ class Penerimaan extends CI_Controller
         $data['id'] = $this->uri->segment(3);
         $data['brg'] = $this->db->get_where('tknpm_penerimaan', array('id' => $data['id']))->row_array();
 
-        $this->form_validation->set_rules('kode_brg', 'Kode Barang', 'trim|required', [
-            'required' => 'Kode harus diisi'
+        $this->form_validation->set_rules('tgl_pene', 'Penerimaan', 'required', [
+            'required' => 'Tanggal Pembukuan harus diisi'
         ]);
-        $this->form_validation->set_rules('nama_brg', 'Nama barang', 'trim|required', [
-            'required' => 'Nama barang harus diisi'
+        $this->form_validation->set_rules('dari', 'Penerimaan', 'required', [
+            'required' => 'Data Toko harus diisi'
         ]);
-        $this->form_validation->set_rules('satuan', 'Satuan', 'required', [
+        $this->form_validation->set_rules('sumber', 'Penerimaan', 'required', [
+            'required' => 'Sumber Dana harus diisi'
+        ]);
+        $this->form_validation->set_rules('tgl_doc_peng', 'Penerimaan', 'required', [
+            'required' => 'Tanggal Dokumentasi harus diisi'
+        ]);
+        $this->form_validation->set_rules('no_doc_peng', 'Penerimaan', 'required', [
+            'required' => 'No Dokumentasi harus diisi'
+        ]);
+        $this->form_validation->set_rules('kode_brg', 'Penerimaan', 'required', [
+            'required' => 'Kode Barang harus diisi'
+        ]);
+        $this->form_validation->set_rules('nama_brg', 'Penerimaan', 'required', [
+            'required' => 'Nama Barang harus diisi'
+        ]);
+        $this->form_validation->set_rules('satuan', 'Penerimaan', 'required', [
             'required' => 'Satuan harus diisi'
         ]);
-        $this->form_validation->set_rules('harga', 'Harga', 'required', [
+        $this->form_validation->set_rules('vol', 'Penerimaan', 'required', [
+            'required' => 'Volume harus diisi'
+        ]);
+        $this->form_validation->set_rules('harga', 'Penerimaan', 'required', [
             'required' => 'Harga harus diisi'
+        ]);
+        $this->form_validation->set_rules('total', 'Penerimaan', 'required', [
+            'required' => 'Total harus diisi'
+        ]);
+        $this->form_validation->set_rules('no_buk_pen', 'Penerimaan', 'required', [
+            'required' => 'No Bukti Penerimaan harus diisi'
+        ]);
+        $this->form_validation->set_rules('tgl_buk_pen', 'Penerimaan', 'required', [
+            'required' => 'Tanggal Bukti Penerimaan harus diisi'
         ]);
         $vol = $this->input->post('vol');
         $harga = $this->input->post('harga');
@@ -150,6 +180,7 @@ class Penerimaan extends CI_Controller
                 'total' => $total,
                 'no_buk_pen' => $this->input->post('no_buk_pen'),
                 'tgl_buk_pen' => $this->input->post('tgl_buk_pen'),
+                'status' => $this->input->post('status'),
                 'ket' => $this->input->post('ket')
             ];
             $id = $this->input->post('id');
@@ -293,6 +324,7 @@ class Penerimaan extends CI_Controller
          <th rowspan="2">Harga Satuan</th>
          <th rowspan="2">Jumlah Harga</th>
          <th colspan="2">Bukti Penerimaan</th>
+         <th rowspan="2">Status</th>
          <th rowspan="2">Keterangan</th>
          <th rowspan="2">Action</th>
      </tr>
@@ -319,10 +351,11 @@ class Penerimaan extends CI_Controller
           <td>' . $row->nama_brg . '</td>
           <td>' . $row->satuan . '</td>
           <td>' . $row->volume . '</td>
-          <td>' . $row->harga . '</td>
-          <td>' . $row->total . '</td>
+          <td>' . 'Rp.' . $row->harga . '</td>
+          <td>' . 'Rp.' . $row->total . '</td>
           <td>' . $row->no_buk_pen . '</td>
           <td>' . $row->tgl_buk_pen . '</td>
+          <td>' . $row->status . '</td>
           <td>' . $row->ket . '</td>
           <td><a href="" class="badge badge-warning">Kirim</a>
           <a href="' . base_url('penerimaan/edit/') . '' . $row->id . '" class="badge badge-success">Edit</a>
@@ -336,11 +369,11 @@ class Penerimaan extends CI_Controller
             }
             $output .= '<tr>
         <th colspan="11">Total</th>
-        <th colspan="5">Rp.' . $jml . '</th>
+        <th colspan="6">Rp.' . $jml . '</th>
         </tr>';
         } else {
             $output .= '<tr>
-           <td colspan="15" align="center">No Data Found</td>
+           <td colspan="16" align="center">No Data Found</td>
           </tr>';
         }
         $output .= '</table>';
@@ -371,7 +404,7 @@ class Penerimaan extends CI_Controller
         $trig = $this->db->where('kode_brg', $datae['kode_brg']);
         $trig = $this->db->get('tknpm_pengeluaran')->result_array();
         $kodeizin = $this->db->get_where('tknpm_kode_barang', ['kode' => '15.01.01.0516'])->row_array();
-        var_dump($kodeizin);
+        // var_dump($kodeizin);
         // $num = $trig->num_rows();
         // var_dump($num);
         // var_dump($trig);
@@ -402,7 +435,28 @@ class Penerimaan extends CI_Controller
         $this->load->model('Penerimaan_model', 'pen');
         $datas = $this->pen->getallData();
 
+        foreach ($datas as $s) {
+            $data = [
+                'tgl_peng' => $s['tgl_pene'],
+                'nm_un_kerja' => $s['dari'],
+                'smbr' => $s['sumber'],
+                'no_spbrg' => $s['no_doc_peng'],
+                'tgl_spbrg' => $s['tgl_doc_peng'],
+                'kode_brg' => $s['kode_brg'],
+                'nama_brg' => $s['nama_brg'],
+                'satuan' => $s['satuan'],
+                'volumes' => $s['volume'],
+                'hargas' => $s['harga'],
+                'totals' => $s['total'],
+                'stts' => $s['status'],
+                'tgl_peny' => $s['tgl_buk_pen'],
+                'kets' => $s['ket']
+            ];
 
-        var_dump($datas);
+            $this->pen->insertall($data);
+        }
+        $this->session->set_flashdata('message', 'Dikirim');
+        redirect('pengeluaran');
+        // var_dump($datas);
     }
 }

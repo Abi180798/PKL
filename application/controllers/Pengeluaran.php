@@ -28,40 +28,46 @@ class Pengeluaran extends CI_Controller
         $this->form_validation->set_rules('nm_uk', 'Pengeluaran', 'required', [
             'required' => 'Data Toko harus diisi'
         ]);
+        $this->form_validation->set_rules('smbr', 'Pengeluaran', 'required', [
+            'required' => 'Sumber Dana harus diisi'
+        ]);
         $this->form_validation->set_rules('tgl_spbrg', 'Pengeluaran', 'required', [
-            'required' => 'Tanggal Dokumentasi harus diisi'
+            'required' => 'Tanggal Surat Permintaan harus diisi'
         ]);
         $this->form_validation->set_rules('no_spbrg', 'Pengeluaran', 'required', [
-            'required' => 'No Dokumentasi harus diisi'
+            'required' => 'No Surat Permintaan harus diisi'
         ]);
         $this->form_validation->set_rules('kode_brg', 'Pengeluaran', 'required', [
-            'required' => 'Data Toko harus diisi'
+            'required' => 'Kode Barang harus diisi'
         ]);
         $this->form_validation->set_rules('nama_brg', 'Pengeluaran', 'required', [
-            'required' => 'Data Toko harus diisi'
+            'required' => 'Nama Barang harus diisi'
         ]);
         $this->form_validation->set_rules('satuan', 'Pengeluaran', 'required', [
-            'required' => 'Data Toko harus diisi'
+            'required' => 'Satuan harus diisi'
         ]);
         $this->form_validation->set_rules('vol', 'Pengeluaran', 'required', [
-            'required' => 'Data Toko harus diisi'
+            'required' => 'Volume harus diisi'
         ]);
         $this->form_validation->set_rules('harga', 'Pengeluaran', 'required', [
-            'required' => 'Data Toko harus diisi'
+            'required' => 'Harga harus diisi'
         ]);
         $this->form_validation->set_rules('total', 'Pengeluaran', 'required', [
-            'required' => 'Data Toko harus diisi'
+            'required' => 'Total harus diisi'
         ]);
         $this->form_validation->set_rules('tgl_peny', 'Pengeluaran', 'required', [
-            'required' => 'Data Toko harus diisi'
+            'required' => 'Tanggal Penyerahan harus diisi'
         ]);
-        $this->form_validation->set_rules('ket', 'Pengeluaran', 'required', [
-            'required' => 'Data Toko harus diisi'
+        $this->form_validation->set_rules('stts', 'Pengeluaran', 'required', [
+            'required' => 'Status harus diisi'
         ]);
 
         $vol = $this->input->post('vol');
         $harga = $this->input->post('harga');
-        $total = $vol * $harga;
+        if ($vol != null && $harga != null) {
+
+            $total = $vol * $harga;
+        }
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -92,6 +98,7 @@ class Pengeluaran extends CI_Controller
                 'hargas' => $harga,
                 'totals' => $total,
                 'tgl_peny' => $this->input->post('tgl_peny'),
+                'stts' => $this->input->post('stts'),
                 'kets' => $this->input->post('ket')
             ];
             $this->load->model('Pengeluaran_model', 'ins');
@@ -108,17 +115,44 @@ class Pengeluaran extends CI_Controller
         $data['id'] = $this->uri->segment(3);
         $data['brg'] = $this->db->get_where('tknpm_pengeluaran', array('id' => $data['id']))->row_array();
 
-        $this->form_validation->set_rules('kode_brg', 'Kode Barang', 'trim|required', [
-            'required' => 'Kode harus diisi'
+        $this->form_validation->set_rules('tgl_peng', 'Pengeluaran', 'required', [
+            'required' => 'Tanggal Pembukuan harus diisi'
         ]);
-        $this->form_validation->set_rules('nama_brg', 'Nama barang', 'trim|required', [
-            'required' => 'Nama barang harus diisi'
+        $this->form_validation->set_rules('nm_uk', 'Pengeluaran', 'required', [
+            'required' => 'Data Toko harus diisi'
         ]);
-        $this->form_validation->set_rules('satuan', 'Satuan', 'required', [
+        $this->form_validation->set_rules('smbr', 'Pengeluaran', 'required', [
+            'required' => 'Sumber Dana harus diisi'
+        ]);
+        $this->form_validation->set_rules('tgl_spbrg', 'Pengeluaran', 'required', [
+            'required' => 'Tanggal Surat Permintaan harus diisi'
+        ]);
+        $this->form_validation->set_rules('no_spbrg', 'Pengeluaran', 'required', [
+            'required' => 'No Surat Permintaan harus diisi'
+        ]);
+        $this->form_validation->set_rules('kode_brg', 'Pengeluaran', 'required', [
+            'required' => 'Kode Barang harus diisi'
+        ]);
+        $this->form_validation->set_rules('nama_brg', 'Pengeluaran', 'required', [
+            'required' => 'Nama Barang harus diisi'
+        ]);
+        $this->form_validation->set_rules('satuan', 'Pengeluaran', 'required', [
             'required' => 'Satuan harus diisi'
         ]);
-        $this->form_validation->set_rules('harga', 'Harga', 'required', [
+        $this->form_validation->set_rules('vol', 'Pengeluaran', 'required', [
+            'required' => 'Volume harus diisi'
+        ]);
+        $this->form_validation->set_rules('harga', 'Pengeluaran', 'required', [
             'required' => 'Harga harus diisi'
+        ]);
+        $this->form_validation->set_rules('total', 'Pengeluaran', 'required', [
+            'required' => 'Total harus diisi'
+        ]);
+        $this->form_validation->set_rules('tgl_peny', 'Pengeluaran', 'required', [
+            'required' => 'Tanggal Penyerahan harus diisi'
+        ]);
+        $this->form_validation->set_rules('stts', 'Pengeluaran', 'required', [
+            'required' => 'Status harus diisi'
         ]);
         $vol = $this->input->post('vol');
         $harga = $this->input->post('harga');
@@ -143,6 +177,7 @@ class Pengeluaran extends CI_Controller
                 'hargas' => $this->input->post('harga'),
                 'totals' => $total,
                 'tgl_peny' => $this->input->post('tgl_peny'),
+                'stts' => $this->input->post('stts'),
                 'kets' => $this->input->post('ket')
             ];
             $id = $this->input->post('id');
@@ -266,6 +301,7 @@ class Pengeluaran extends CI_Controller
                         <th rowspan="2">Tanggal</th>
                         <th colspan="2">Surat Permintaan Barang</th>
                         <th rowspan="2">Nama Unit Kerja</th>
+                        <th rowspan="2">Sumber Dana</th>
                         <th rowspan="2">Kode Barang</th>
                         <th rowspan="2">Nama Barang</th>
                         <th rowspan="2">Satuan</th>
@@ -273,6 +309,7 @@ class Pengeluaran extends CI_Controller
                         <th rowspan="2">Harga Satuan</th>
                         <th rowspan="2">Jumlah Harga</th>
                         <th rowspan="2">Tanggal Penyerahan</th>
+                        <th rowspan="2">Status</th>
                         <th rowspan="2">Keterangan</th>
                         <th rowspan="2">Action</th>
                     </tr>
@@ -292,13 +329,15 @@ class Pengeluaran extends CI_Controller
           <td>' . $row->no_spbrg . '</td>
           <td>' . $row->tgl_spbrg . '</td>
           <td>' . $row->nm_un_kerja . '</td>
+          <td>' . $row->smbr . '</td>
           <td>' . $row->kode_brg . '</td>
           <td>' . $row->nama_brg . '</td>
           <td>' . $row->satuan . '</td>
           <td>' . $row->volumes . '</td>
-          <td>' . $row->hargas . '</td>
-          <td>' . $row->totals . '</td>
+          <td>' . 'Rp.' . $row->hargas . '</td>
+          <td>' . 'Rp.' . $row->totals . '</td>
           <td>' . $row->tgl_peny . '</td>
+          <td>' . $row->stts . '</td>
           <td>' . $row->kets . '</td>
           <td><a href="" class="badge badge-warning">Kirim</a>
           <a href="' . base_url('pengeluaran/edit/') . '' . $row->id . '" class="badge badge-success">Edit</a>
@@ -311,12 +350,12 @@ class Pengeluaran extends CI_Controller
                 $i++;
             }
             $output .= '<tr>
-        <th colspan="10">Total</th>
-        <th colspan="4">Rp.' . $jml . '</th>
+        <th colspan="11">Total</th>
+        <th colspan="5">Rp.' . $jml . '</th>
         </tr>';
         } else {
             $output .= '<tr>
-           <td colspan="14" align="center">No Data Found</td>
+           <td colspan="16" align="center">No Data Found</td>
           </tr>';
         }
         $output .= '</table>';

@@ -11,6 +11,10 @@ class Penerimaan_model extends CI_Model
     {
         return $this->db->insert('tknpm_penerimaan', $data);
     }
+    public function insertall($data)
+    {
+        return $this->db->insert('tknpm_pengeluaran', $data);
+    }
     // public function insertBrg($tgl, $dari, $no_doc_peng, $tgl_doc_peng, $kode_brg, $nama_brg, $satuan, $vol, $harga, $total, $no_buk_pen, $tgl_buk_pen, $ket)
     // {
     //     $data = array(

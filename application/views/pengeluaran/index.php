@@ -15,11 +15,18 @@
     </div>
     <div class="row mb-3">
         <div class="col-sm-8">
-            <?= form_error('tgl_pene', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
-
+            <?= form_error('tgl_peng', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
             <?= form_error('dari', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
-
             <?= form_error('kode_brg', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('smbr', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('nama_brg', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('satuan', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('no_spbrg', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('tgl_spbrg', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('vol', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('harga', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('tgl_peny', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+            <?= form_error('stts', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
 
             <div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
         </div>
@@ -72,29 +79,29 @@
             <tbody>
                 <?php $i = 1; ?>
                 <?php foreach ($menu as $m) : ?>
-                <tr>
-                    <th scope="row"><?= $i; ?></th>
-                    <td><?= $m['tgl_peng']; ?></td>
-                    <td><?= $m['no_spbrg']; ?></td>
-                    <td><?= $m['tgl_spbrg']; ?></td>
-                    <td><?= $m['nm_un_kerja']; ?></td>
-                    <td><?= $m['smbr']; ?></td>
-                    <td><?= $m['kode_brg']; ?></td>
-                    <td><?= $m['nama_brg']; ?></td>
-                    <td><?= $m['satuan']; ?></td>
-                    <td><?= $m['volumes']; ?></td>
-                    <td>Rp.<?= $m['hargas']; ?></td>
-                    <td>Rp.<?= $m['totals']; ?></td>
-                    <td><?= $m['tgl_peny']; ?></td>
-                    <td><?= $m['stts']; ?></td>
-                    <td><?= $m['kets']; ?></td>
-                    <td>
-                        <a href="<?= base_url('pengeluaran/edit/') ?><?= $m['id'] ?>" class="badge badge-success">Edit</a>
-                        <a href="<?= base_url('pengeluaran/hapus/') ?><?= $m['id'] ?>" class="badge badge-danger tombol-hapus">Hapus</a>
-                    </td>
+                    <tr>
+                        <th scope="row"><?= $i; ?></th>
+                        <td><?= $m['tgl_peng']; ?></td>
+                        <td><?= $m['no_spbrg']; ?></td>
+                        <td><?= $m['tgl_spbrg']; ?></td>
+                        <td><?= $m['nm_un_kerja']; ?></td>
+                        <td><?= $m['smbr']; ?></td>
+                        <td><?= $m['kode_brg']; ?></td>
+                        <td><?= $m['nama_brg']; ?></td>
+                        <td><?= $m['satuan']; ?></td>
+                        <td><?= $m['volumes']; ?></td>
+                        <td>Rp.<?= $m['hargas']; ?></td>
+                        <td>Rp.<?= $m['totals']; ?></td>
+                        <td><?= $m['tgl_peny']; ?></td>
+                        <td><?= $m['stts']; ?></td>
+                        <td><?= $m['kets']; ?></td>
+                        <td>
+                            <a href="<?= base_url('pengeluaran/edit/') ?><?= $m['id'] ?>" class="badge badge-success">Edit</a>
+                            <a href="<?= base_url('pengeluaran/hapus/') ?><?= $m['id'] ?>" class="badge badge-danger tombol-hapus">Hapus</a>
+                        </td>
 
-                </tr>
-                <?php $i++; ?>
+                    </tr>
+                    <?php $i++; ?>
                 <?php endforeach; ?>
 
             </tbody>
@@ -159,18 +166,6 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Kode Barang</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control mb-2" id="kode_brg" name="kode_brg" placeholder="Kode Barang" onkeyup="autofill()">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Nama Barang</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control mb-2" id="nama_brg" name="nama_brg" placeholder="Nama Barang" onkeyup="hell()" autocomplete="off">
-                                </div>
-                            </div>
-                            <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Sumber Dana</label>
                                 <div class="col-sm-9">
                                     <div class="input-group mb-3">
@@ -185,6 +180,18 @@
                                         </div>
                                     </div>
                                     <!-- <input type="text" class="form-control mb-2" id="smbr" name="smbr" placeholder="Sumber Dana" onkeyup="helly()" autocomplete="off"> -->
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Kode Barang</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control mb-2" id="kode_brg" name="kode_brg" placeholder="Kode Barang" onkeyup="autofill()">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Nama Barang</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control mb-2" id="nama_brg" name="nama_brg" placeholder="Nama Barang" onkeyup="hell()" autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -221,7 +228,7 @@
                                 <label class="col-sm-3 col-form-label">Status Barang</label>
                                 <div class="col-sm-9">
                                     <div class="input-group mb-3">
-                                        <select class="custom-select" id="inputGroupSelect02" name="status">
+                                        <select class="custom-select" id="inputGroupSelect02" name="stts">
                                             <option selected>Choose...</option>
                                             <option value="Ada">Ada</option>
                                             <option value="Tidak Ada">Tidak Ada</option>
