@@ -87,6 +87,7 @@ class Penerimaan_model extends CI_Model
             $this->db->or_like('total', $query);
             $this->db->or_like('dari', $query);
             $this->db->or_like('sumber', $query);
+            $this->db->or_like('status', $query);
             $this->db->or_like('no_doc_peng', $query);
             $this->db->or_like('tgl_doc_peng', $query);
             $this->db->or_like('kode_brg', $query);

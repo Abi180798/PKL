@@ -71,26 +71,26 @@
             <tbody>
                 <?php $i = 1; ?>
                 <?php foreach ($menu as $m) : ?>
-                <tr>
-                    <th scope="row"><?= $i; ?></th>
-                    <td><?= $m['kode_brg']; ?></td>
-                    <td><?= $m['nama_brg']; ?></td>
-                    <td><?= $m['satuan']; ?></td>
-                    <td><?= $m['volume']; ?></td>
-                    <td><?= $m['volumes']; ?></td>
-                    <td><?= $sisa = $m['volumes'] - $m['volume'] ?></td>
-                    <td>Rp.<?= $m['total']; ?></td>
-                    <td>Rp.<?= $m['totals']; ?></td>
-                    <td>Rp.<?= $tot = $m['totals'] - $m['total']; ?></td>
-                    <td><?= $m['ket']; ?></td>
-                    <!-- <td>
+                    <tr>
+                        <th scope="row"><?= $i; ?></th>
+                        <td><?= $m['kode_brg']; ?></td>
+                        <td><?= $m['nama_brg']; ?></td>
+                        <td><?= $m['satuan']; ?></td>
+                        <td><?= $m['volume']; ?></td>
+                        <td><?= $m['volumes']; ?></td>
+                        <td><?= $sisa = $m['volumes'] - $m['volume'] ?></td>
+                        <td>Rp.<?= $m['total']; ?></td>
+                        <td>Rp.<?= $m['totals']; ?></td>
+                        <td>Rp.<?= $tot = $m['totals'] - $m['total']; ?></td>
+                        <td><?= $m['ket']; ?></td>
+                        <!-- <td>
                         <a href="<?= base_url('penerimaan/kirim/') ?><?= $m['id'] ?>" class="badge badge-warning tombol-kirim">Kirim</a>
                         <a href="<?= base_url('penerimaan/edit/') ?><?= $m['id'] ?>" class="badge badge-success">Edit</a>
                         <a href="<?= base_url('penerimaan/hapus/') ?><?= $m['id'] ?>" class="badge badge-danger tombol-hapus">Hapus</a>
                     </td> -->
 
-                </tr>
-                <?php $i++; ?>
+                    </tr>
+                    <?php $i++; ?>
                 <?php endforeach; ?>
 
             </tbody>

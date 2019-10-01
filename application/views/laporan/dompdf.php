@@ -20,13 +20,13 @@
 </head>
 
 <body>
-    <div style="margin: 3px;">
+    <div style="margin: 0px;">
 
 
-        <p style="font-weight: bold; font-size: 10px;">Pemerintah Kota Mataram<br>TK NEGERI PEMBINA MATARAM<br>JALAN PEMUDA NO.61 MATARAM</p>
+        <p style="font-weight: bold; font-size: 10px;padding-left:110px;">Pemerintah Kota Mataram<br>TK NEGERI PEMBINA MATARAM<br>JALAN PEMUDA NO.61 MATARAM</p>
         <h6 align="center" style="">BUKU PENERIMAAN BARANG PERSEDIAAN</h6>
 
-        <table align="center" style="width:100%; font-size: 10px;">
+        <table align="center" style="width:90%; font-size: 10px;padding-left:55px;">
             <thead>
                 <tr>
                     <th rowspan="2">No</th>
@@ -52,23 +52,23 @@
             <tbody>
                 <?php $i = 0; ?>
                 <?php foreach ($data as $m) : ?>
-                <?php $i++; ?>
-                <tr>
-                    <th scope="row"><?= $i; ?></th>
-                    <td><?= $m['tgl_pene']; ?></td>
-                    <td><?= $m['dari']; ?></td>
-                    <td><?= $m['no_doc_peng']; ?></td>
-                    <td><?= $m['tgl_doc_peng']; ?></td>
-                    <td><?= $m['kode_brg']; ?></td>
-                    <td><?= $m['nama_brg']; ?></td>
-                    <td><?= $m['satuan']; ?></td>
-                    <td><?= $m['volume']; ?></td>
-                    <td>Rp.<?= $m['harga']; ?></td>
-                    <td>Rp.<?= $m['total']; ?></td>
-                    <td><?= $m['no_buk_pen']; ?></td>
-                    <td><?= $m['tgl_buk_pen']; ?></td>
-                    <td><?= $m['ket']; ?></td>
-                </tr>
+                    <?php $i++; ?>
+                    <tr>
+                        <th scope="row"><?= $i; ?></th>
+                        <td><?= $m['tgl_pene']; ?></td>
+                        <td><?= $m['dari']; ?></td>
+                        <td><?= $m['no_doc_peng']; ?></td>
+                        <td><?= $m['tgl_doc_peng']; ?></td>
+                        <td><?= $m['kode_brg']; ?></td>
+                        <td><?= $m['nama_brg']; ?></td>
+                        <td><?= $m['satuan']; ?></td>
+                        <td><?= $m['volume']; ?></td>
+                        <td>Rp.<?= $m['harga']; ?></td>
+                        <td>Rp.<?= $m['total']; ?></td>
+                        <td><?= $m['no_buk_pen']; ?></td>
+                        <td><?= $m['tgl_buk_pen']; ?></td>
+                        <td><?= $m['ket']; ?></td>
+                    </tr>
                 <?php endforeach; ?>
                 <tr>
                     <td colspan="10">Total</td>
@@ -78,7 +78,7 @@
         </table>
         <div class="row" style="padding-top: 20px;">
             <div class="col-sm-2"></div>
-            <div class="col-sm-4" style="font-size: 10px;">
+            <div class="col-sm-4" style="font-size: 10px;padding-left:125px;">
                 <br><br>
                 <p>Atasan Langsung</p>
                 <br><br><br>

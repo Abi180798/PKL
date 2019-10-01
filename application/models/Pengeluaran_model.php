@@ -81,6 +81,8 @@ class Pengeluaran_model extends CI_Model
             $this->db->or_like('volumes', $query);
             $this->db->or_like('tgl_peng', $query);
             $this->db->or_like('totals', $query);
+            $this->db->or_like('smbr', $query);
+            $this->db->or_like('stts', $query);
             $this->db->or_like('nm_un_kerja', $query);
             $this->db->or_like('no_spbrg', $query);
             $this->db->or_like('tgl_spbrg', $query);
