@@ -242,6 +242,39 @@ class Laporanakhir extends CI_Controller
         $this->mypdf->generate('laporan/akhir', $data, 'Buku Laporan Akhir', 'legal', 'landscape');
         // $this->load->view('laporan/dompdf', $data);
     }
+    public function penlaporans()
+    {
+        $this->load->model('Laporan_model', 'lap');
+        $data['menu'] = $this->lap->test();
+        $this->load->library('mypdf');
+        $data['vol'] = 0;
+        foreach ($data['menu'] as $m) {
+            $data['vol'] = $data['vol'] + $m['volume'];
+        }
+        $data['vols'] = 0;
+        foreach ($data['menu'] as $m) {
+            $data['vols'] = $data['vols'] + $m['volumes'];
+        }
+        $data['jumlah'] = 0;
+        foreach ($data['menu'] as $m) {
+            $data['jumlah'] = $data['jumlah'] + $m['total'];
+        }
+        $data['jumlahs'] = 0;
+        foreach ($data['menu'] as $m) {
+            $data['jumlahs'] = $data['jumlahs'] + $m['totals'];
+        }
+        $data['atasan'] = $this->db->get_where('tknpm_sebagai', ['sebagai' => 'atasan'])->row_array();
+        $data['penyimpan'] = $this->db->get_where('tknpm_sebagai', ['sebagai' => 'penyimpan'])->row_array();
+        $tgl = $data['penyimpan'];
+        $data['tgl'] = $this->tgl_indo($tgl['tgl']);
+        // $data['data'] = $this->pen->getallData();
+        // $data['jumlah'] = 0;
+        // foreach ($data['data'] as $m) {
+        //     $data['jumlah'] = $data['jumlah'] + $m['total'];
+        // }
+        $this->mypdf->generates('laporan/akhir', $data, 'Buku Laporan Akhir', 'legal', 'landscape');
+        // $this->load->view('laporan/dompdf', $data);
+    }
     // public function ajax()
     // {
     //     $kode = $_GET['kode'];

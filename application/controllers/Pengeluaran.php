@@ -243,6 +243,22 @@ class Pengeluaran extends CI_Controller
         $this->mypdf->generate('laporan/lappeng', $data, 'Buku Pengeluaran', 'legal', 'landscape');
         // $this->load->view('laporan/lappeng', $data);
     }
+    public function penlaporans()
+    {
+        $this->load->model('Pengeluaran_model', 'pen');
+        $this->load->library('mypdf');
+        $data['atasan'] = $this->db->get_where('tknpm_sebagai', ['sebagai' => 'atasan'])->row_array();
+        $data['penyimpan'] = $this->db->get_where('tknpm_sebagai', ['sebagai' => 'penyimpan'])->row_array();
+        $tgl = $data['penyimpan'];
+        $data['tgl'] = $this->tgl_indo($tgl['tgl']);
+        $data['data'] = $this->pen->getallData();
+        $data['jumlah'] = 0;
+        foreach ($data['data'] as $m) {
+            $data['jumlah'] = $data['jumlah'] + $m['totals'];
+        }
+        $this->mypdf->generates('laporan/lappeng', $data, 'Buku Pengeluaran', 'legal', 'landscape');
+        // $this->load->view('laporan/lappeng', $data);
+    }
     public function ajax()
     {
         $kode = $_GET['kode'];

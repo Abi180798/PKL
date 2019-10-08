@@ -258,6 +258,22 @@ class Penerimaan extends CI_Controller
         $this->mypdf->generate('laporan/dompdf', $data, 'Buku Penerimaan', 'legal', 'landscape');
         // $this->load->view('laporan/dompdf', $data);
     }
+    public function penlaporans()
+    {
+        $this->load->model('Penerimaan_model', 'pen');
+        $this->load->library('mypdf');
+        $data['atasan'] = $this->db->get_where('tknpm_sebagai', ['sebagai' => 'atasan'])->row_array();
+        $data['penyimpan'] = $this->db->get_where('tknpm_sebagai', ['sebagai' => 'penyimpan'])->row_array();
+        $tgl = $data['penyimpan'];
+        $data['tgl'] = $this->tgl_indo($tgl['tgl']);
+        $data['data'] = $this->pen->getallData();
+        $data['jumlah'] = 0;
+        foreach ($data['data'] as $m) {
+            $data['jumlah'] = $data['jumlah'] + $m['total'];
+        }
+        $this->mypdf->generates('laporan/dompdf', $data, 'Buku Penerimaan', 'legal', 'landscape');
+        // $this->load->view('laporan/dompdf', $data);
+    }
     public function ajax()
     {
         $kode = $_GET['kode'];
